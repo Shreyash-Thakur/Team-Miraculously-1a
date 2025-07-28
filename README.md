@@ -79,3 +79,4 @@ This project uses open-source libraries and is itself open source.
 
 ## Authors
 Adobe India Hackathon 2025 Participant
+~ Team Miraculously
