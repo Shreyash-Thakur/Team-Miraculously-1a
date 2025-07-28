@@ -1,0 +1,25 @@
+FROM python:3.14.0rc1-bullseye
+
+WORKDIR /app
+
+# Install system dependencies including ghostscript, opencv deps, and poppler-utils
+RUN apt-get update && apt-get install -y \
+    ghostscript \
+    python3-tk \
+    libsm6 \
+    libxext6 \
+    libxrender-dev \
+    poppler-utils \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python packages (note: removed 'statistics')
+RUN pip install --no-cache-dir \
+    pymupdf==1.24.1 \
+    "camelot-py[cv]==0.11.0" \
+    pandas==2.2.2
+
+# Copy project files
+COPY . .
+
+# Set default run command
+CMD ["python", "final.py"]
